@@ -1,48 +1,57 @@
-import NextAuth from "next-auth";
+import NextAuth from 'next-auth';
 import GoogleProvider from 'next-auth/providers/google';
-import User from "@models/user";
-import { connectToDB } from "@utils/database";
+import log from "logging-service"
+
+import User from '@models/user';
+import { connectToDB } from '@utils/database';
 
 const handler = NextAuth({
-// Configure one or more authentication providers
     providers: [
         GoogleProvider({
             clientId: process.env.GOOGLE_ID,
-            clientSecret: process.env.GOOGLE_CLIENT_SECRET
+            clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+            authorization: {
+                params: {
+                    prompt: "consent",
+                    access_type: "offline",
+                    response_type: "code"
+                }
+            }
         })
-        // ...add more providers here
     ],
-    callbacks:{
+    callbacks: {
         async session({ session }) {
-            const sessionUser = await User.findOne({
-                email: session.user.email
-            })
+            // store the user id from MongoDB to session
+            const sessionUser = await User.findOne({ email: session.user.email });
+            session.user.id = sessionUser._id.toString();
+
+            return session;
         },
-        async signIn({ profile }) {
+        async signIn({ account, profile, user, credentials }) {
+            
             try {
                 await connectToDB();
-                const userExists = await User.findOne({
-                    email: profile.email
-                });
 
+                // check if user already exists
+                const userExists = await User.findOne({ email: profile.email });
+
+                // if not, create a new document and save user in MongoDB
                 if (!userExists) {
                     await User.create({
                         email: profile.email,
-                        username: profile.username.replace(" ", "").toLowerCase(),
-                        import: profile.picture
-                    })
+                        username: profile.name.replace(" ", "").toLowerCase(),
+                        image: profile.picture,
+                    });
                 }
 
-                return true;
+                return true
             } catch (error) {
-                console.log("///////////////////////////////////");
-                console.log("callback error");
-                console.log(error);
-                console.log("///////////////////////////////////");
-                return false;
+                console.log("Error checking if user exists: ", error.message);
+                return false
             }
-        }
-    }
+        },
+    },
+    
 })
 
-export { handler as GET, handler as POST };
+export { handler as GET, handler as POST }
