@@ -1,34 +1,64 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# پروژه اشتراک متن با استفاده از  Next.js
 
-## Getting Started
 
-First, run the development server:
+## توضیحات
+
+این پروژه با استفاده از Next.js و Tailwind طراحی شده است. مورد استفاده این پروژه اشتراک متن است. امکان ورود با استفاده از حساب کاربری گوگل در این پروژه بوسیله NextAuth.js پیاده سازی شده است.
+
+## فهرست مطالب
+
+
+- [نصب](#نصب)
+- [استفاده](#استفاده)
+- [پکیج‌ها](#پکیج-ها)
+- [منابع](#منابع)
+
+# نصب
+
+پس از Clone کردن پروژه با استفاده از یکی از دستورهای زیر باید Package های استفاده شده را نصب کنید:
+```bash
+npm i
+```
+```bash
+npm install
+```
+```bash
+yarn install
+```
+
+# استفاده
+
+پس از نصب تمام پکیج‌های مورد نیاز با استفاده از یکی از دستورهای زیر میتوانید پروژه را اجرا کنید:
+
+*توجه داشته باشید که در مرحله قبل از package manager استفاده کردید.*
 
 ```bash
 npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+```
+```bash
+yarn run
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+# پکیج ها
 
-You can start editing the page by modifying `app/page.js`. The page auto-updates as you edit the file.
+در این پروژه از پکیج های زیر استفاده شده است:
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+![GitHub package.json dependency version (subfolder of monorepo)](https://img.shields.io/github/package-json/dependency-version/smahmoodh/promptopia/next)
 
-## Learn More
+![GitHub package.json dependency version (subfolder of monorepo)](https://img.shields.io/github/package-json/dependency-version/smahmoodh/promptopia/react)
 
-To learn more about Next.js, take a look at the following resources:
+![GitHub package.json dependency version (subfolder of monorepo)](https://img.shields.io/github/package-json/dependency-version/smahmoodh/promptopia/next-auth)
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+![GitHub package.json dependency version (subfolder of monorepo)](https://img.shields.io/github/package-json/dependency-version/smahmoodh/promptopia/tailwindcss)
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+![GitHub package.json dependency version (subfolder of monorepo)](https://img.shields.io/github/package-json/dependency-version/smahmoodh/promptopia/mongoose)
 
-## Deploy on Vercel
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## منابع
+
+- [Next.js](https://nextjs.org/)
+- [mongoosejs](https://mongoosejs.com/)
+- [Tailwind](https://tailwindcss.com/)
+- [NextAuth.js](https://next-auth.js.org/)
